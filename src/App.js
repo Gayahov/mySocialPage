@@ -9,10 +9,10 @@ import Header from "./layout/Header/Header";
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       {/* <Home /> */}
       <Routes>
-            {/* <Route path="/" element={<Posts />} /> */}
+      <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home/>} />

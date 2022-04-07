@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useHistory } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
@@ -22,12 +22,14 @@ export default function Login() {
     setPassword(e.target.value);
     setSubmitted(false);
   };
-
+  // let history = useHistory ()
   // Handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
       setError(true);
+      // history.push("./home")
+      window.location.href = "./home";
     } else {
       const response = await fetch("api/v1/auth/login", {
         method: "POST",
@@ -78,40 +80,41 @@ export default function Login() {
   return (
     <div>
       <Link to="/home">Home</Link>
-    <div className="form">
-      
-      <div>
-        <h1>User Login</h1>
+      <div className="form">
+        <div>
+          <h1>User Login</h1>
+        </div>
+        {/* Calling to the methods */}
+        <div className="messages">
+          {errorMessage()}
+          {successMessage()}
+        </div>
+
+        <form className="reg-log-form">
+          <label className="label">Email</label>
+          <input
+            onChange={handleEmail}
+            className="input"
+            value={email}
+            type="email"
+          />
+
+          <label className="label">Password</label>
+          <input
+            onChange={handlePassword}
+            className="input"
+            value={password}
+            type="password"
+          />
+
+          <button onClick={handleSubmit} className="btn" type="submit">
+            Login
+          </button>
+        </form>
+        <p>
+          New to this site? <Link to="/register">Register</Link>
+        </p>
       </div>
-      {/* Calling to the methods */}
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
-      </div>
-
-      <form className="reg-log-form">
-        <label className="label">Email</label>
-        <input
-          onChange={handleEmail}
-          className="input"
-          value={email}
-          type="email"
-        />
-
-        <label className="label">Password</label>
-        <input
-          onChange={handlePassword}
-          className="input"
-          value={password}
-          type="password"
-        />
-
-        <button onClick={handleSubmit} className="btn" type="submit">
-          Login
-        </button>
-      </form>
-      <p>New to this site? <Link to="/register">Register</Link></p>
-    </div>
     </div>
   );
 }
