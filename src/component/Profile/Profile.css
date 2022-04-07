@@ -1,0 +1,11 @@
+.profile {
+  color: beige;
+  margin: 5px;
+  padding: 10px;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  font-family: "Sacramento", cursive;
+  background-color: rgb(38, 77, 78);
+
+}
