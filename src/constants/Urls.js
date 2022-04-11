@@ -1,3 +1,3 @@
-const POSTS_URL= 'https://jsonplaceholder.typicode.com/posts';
+const POSTS_URL= '/api/v1/post/mypost';
 
 export{POSTS_URL}

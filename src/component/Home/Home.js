@@ -9,7 +9,7 @@ import Header from "../../layout/Header/Header";
 export default function Home (){
     return (
         <div className="main">
-            <Header/>
+            {/* <Header/> */}
            <MainCarousel/>
         <div><Posts/></div>
         </div>

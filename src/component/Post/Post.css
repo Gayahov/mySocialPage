@@ -6,6 +6,10 @@
     -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
     box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
 }
+.posts-div img {
+  width: 40%;
+  height: 60%;
+}
 .posts-div h3 {
 text-transform: capitalize;
   font-size: 18px;

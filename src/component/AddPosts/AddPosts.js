@@ -1,17 +1,50 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AddPosts.css";
 
-export default function AddPosts() {
+export default function AddPosts(onAddPost) {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const [subTittle, setSubTittle] = useState("");
-  const [description, setDescription]= useState("")
+  const [subTitle, setSubTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+  const handleOnSubmit = async (e) => {
+    // e.preventDefault();
+
+    let formData = new FormData();
+    if (image) {
+      formData.append("avatar", image);
+    }
+    formData.append("title", title); // title
+    formData.append("subtitle", subTitle); // subtitle
+    formData.append("description", description); // description
+
+    let response = await fetch("/api/v1/post", {
+      method: "POST",
+      body: JSON.stringify({
+        title: title,
+        subtitle: subTitle,
+        description: description,
+      }),
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+      body: formData,
+    });
+    let data = await response.json();
+    console.log(data);
+    setTitle("");
+    setSubTitle("");
+    setDescription("");
+    window.location.href = "/home";
+  };
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
     // setSubmitted(false);
   };
   const handleSubTitle = (e) => {
-    setSubTittle(e.target.value);
+    setSubTitle(e.target.value);
     // setSubmitted(false);
   };
   const handleDescription = (e) => {
@@ -20,7 +53,8 @@ export default function AddPosts() {
   };
 
   return (
-    <form className="add-posts">
+    <div className="add-posts">
+      <input type="file" onChange={(e) => setImage(e.target.files[0])} />
       <input
         onChange={handleTitle}
         placeholder="Title"
@@ -30,7 +64,7 @@ export default function AddPosts() {
       <input
         onChange={handleSubTitle}
         placeholder="Subtitle"
-        value={subTittle}
+        value={subTitle}
         type="text"
       />
       <textarea
@@ -41,7 +75,13 @@ export default function AddPosts() {
         onChange={handleDescription}
         placeholder="what's new?"
       ></textarea>
-      <button>Add Post</button>
-    </form>
+      <button
+        onClick={(e) => {
+          handleOnSubmit(e);
+        }}
+      >
+        Add Post
+      </button>
+    </div>
   );
 }

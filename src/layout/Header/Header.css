@@ -1,3 +1,8 @@
+.navBar{
+  /* position: fixed;
+  z-index: 1; */
+}
+
 .navBar-child {
   margin: 5px;
   justify-content: center;
@@ -47,4 +52,14 @@
   -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
   box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
 
+}
+a {
+  list-style: none;
+  text-decoration: none;
+  color: rgb(129, 106, 72);
+  transition: .5s;
+}
+
+a:hover{
+  text-decoration:underline
 }

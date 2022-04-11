@@ -1,16 +1,32 @@
 import React from "react";
-import { useState, useHistory } from "react";
-import { Link } from "react-router-dom";
+import { useState, useHistory, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 export default function Login() {
+  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
-
+  useEffect(() => {
+    let fetchData = async () => {
+      let response = await fetch("/api/v1/profile", {
+        method: "GET",
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      });
+      let data = await response.json();
+      console.log(data);
+      if (!data.error) {
+        navigate("/profile");
+      }
+    };
+    fetchData();
+  }, []);
   // Handling the email change
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -22,14 +38,11 @@ export default function Login() {
     setPassword(e.target.value);
     setSubmitted(false);
   };
-  // let history = useHistory ()
-  // Handling the form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
       setError(true);
-      // history.push("./home")
-      window.location.href = "./home";
     } else {
       const response = await fetch("api/v1/auth/login", {
         method: "POST",
@@ -39,11 +52,14 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
+      navigate("/profile");
       console.log(data);
       setSubmitted(true);
       if (data.error) {
         setError(data.error);
       } else {
+        localStorage.setItem("token", data.access_token);
+
         setError(false);
       }
     }
@@ -79,10 +95,10 @@ export default function Login() {
 
   return (
     <div>
-      <Link to="/home">Home</Link>
+      {/* <Link to="/home">Home</Link> */}
       <div className="form">
         <div>
-          <h1>User Login</h1>
+          <h1>Sign In</h1>
         </div>
         {/* Calling to the methods */}
         <div className="messages">
@@ -108,11 +124,11 @@ export default function Login() {
           />
 
           <button onClick={handleSubmit} className="btn" type="submit">
-            Login
+            Sign In
           </button>
         </form>
         <p>
-          New to this site? <Link to="/register">Register</Link>
+          New to this site? <Link to="/register">Sign Up</Link>
         </p>
       </div>
     </div>

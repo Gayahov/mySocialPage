@@ -7,7 +7,46 @@ import "./Posts.css";
 import SearchPosts from "../SearchPosts/SearchPosts";
 
 export default function Posts() {
-  const [data] = useFetch(POSTS_URL);
+  const [postArray, setPostArray] = useState("");
+
+  useEffect(() => {
+    let fetchData = async () => {
+      let response = await fetch("/api/v1/post/mypost?limit=10&offset=0", {
+        method: "GET",
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      });
+      let data = await response.json();
+      console.log(data);
+      setPostArray(data);
+    };
+    fetchData();
+  }, []);
+  let formData = new FormData();
+  // formData.append("title","blog8"); // title
+  // formData.append("subtitle","blog8sub"); // subtitle
+  // formData.append("description","blog8desc") // description
+  // console.log(formData)
+
+  const onAddPost = async (e) => {
+    e.preventDefault();
+    // let response = await fetch("/api/v1/post", {
+    //   method: "POST",
+    //   // body: JSON.stringify({
+    //   //   title: title,
+    //   //   subTitle: subTitle,
+    //   //   description: description,
+    //   // }),
+    //   headers: {
+    //     "x-access-token":localStorage.getItem('token')
+    //   },
+    //   body:formData
+    // })
+    // let data = await response.json();
+    // console.log(data)
+    console.log(e.target.value);
+  };
 
   return (
     <div className="main-posts">
@@ -18,13 +57,22 @@ export default function Posts() {
 
       <div className="posts">
         <div className="inputs">
-          <AddPosts></AddPosts>
+          <AddPosts onAddPost={onAddPost}></AddPosts>
         </div>
 
-        {data ? (
+        {postArray ? (
           <div className="post-section">
-            {data.slice(0, 10).map((item) => {
-              return <Post title={item.title} body={item.body} />;
+            {postArray.map((item) => {
+              return (
+                <Post
+                  subTitle={item.subTitle}
+                  img={item.image_url}
+                  firstName={item.firstName}
+                  createdAt={item.createdAt}
+                  title={item.title}
+                  description={item.description}
+                />
+              );
             })}
           </div>
         ) : null}

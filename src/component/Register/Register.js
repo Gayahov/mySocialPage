@@ -57,7 +57,7 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({firstName, lastName, nickName, email, password, confirmPassword }),
+        body: JSON.stringify({firstName, lastName, nick_name:nickName, email, password, confirmPassword }),
       });
       const data = await response.json();
       console.log(data);
@@ -100,10 +100,10 @@ const Register = () => {
 
   return (
     <div>
-      <Link to="/home">Home</Link>
+      {/* <Link to="/home">Home</Link> */}
       <div className="form">
         <div>
-          <h1>User Registration</h1>
+          <h1>Sign Up</h1>
         </div>
 
         {/* Calling to the methods */}
@@ -162,12 +162,12 @@ const Register = () => {
           />
 
           <button onClick={handleSubmit} className="btn" type="submit">
-            Register
+            Sign Up
           </button>
         </form>
         <p>
           {" "}
-          Already registered? <Link to="/login">Login</Link>
+          Already registered? <Link to="/login">Sign In</Link>
         </p>
       </div>
     </div>
