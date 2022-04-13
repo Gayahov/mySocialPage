@@ -1,8 +1,14 @@
 .add-comment{
     display: flex;
+    visibility: hidden;
     justify-content: flex-end;
     /* flex-direction: column; */
     align-items: flex-end;
+}
+.add-comment.active {
+    opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 .add-comment input {
     padding: 10px ;

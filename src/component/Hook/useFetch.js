@@ -1,18 +1,16 @@
-import { useState, useEffect } from "react";
-import axios from 'axios'
+// import React, { useEffect, useState } from "react";
 
-const useFetch = (url) => {
-    const [data, setData] = useState([]);
 
-    useEffect(() => {
-        axios
-            .get(url)
-            .then((res) => {setData(res.data);
-            })
-            .catch(error => console.log('error'))
-    }, [url]);
 
-    return [data];
-};
+// export default async function  useFetch(url)  {
+//    let response =  await fetch(url, {
+//     method: "GET",
+//     headers: {
+//       "x-access-token": localStorage.getItem("token"),
+//     },
+//    });
+//    let data = await response.json()
+//    console.log("Data",data)
+//   return  data;
 
-export default useFetch;
+// }

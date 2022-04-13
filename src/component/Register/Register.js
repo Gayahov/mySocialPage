@@ -1,19 +1,40 @@
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import "./Register.css";
 
 const Register = () => {
+  let navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword]= useState ("")
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
-
+  useEffect(() => {
+    let fetchData = async () => {
+      if (localStorage.getItem("token")) {
+        navigate("/profile");
+        return;
+      }
+      let response = await fetch("/api/v1/profile", {
+        method: "GET",
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      });
+      let data = await response.json();
+      console.log(data);
+      if (!data.error) {
+        navigate("/profile");
+      }
+    };
+    fetchData();
+  }, []);
   // Handling the name change
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -40,8 +61,8 @@ const Register = () => {
     setPassword(e.target.value);
     setSubmitted(false);
   };
-   // Handling the password change
-   const handleConfirmPassword = (e) => {
+  // Handling the password change
+  const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
     setSubmitted(false);
   };
@@ -49,7 +70,14 @@ const Register = () => {
   // Handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (firstName === "" || lastName === "" ||nickName === "" ||email === "" || password === ""|| confirmPassword === "") {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      nickName === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
       setError(true);
     } else {
       const response = await fetch("api/v1/auth/register", {
@@ -57,7 +85,14 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({firstName, lastName, nick_name:nickName, email, password, confirmPassword }),
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          nick_name: nickName,
+          email,
+          password,
+          confirmPassword,
+        }),
       });
       const data = await response.json();
       console.log(data);

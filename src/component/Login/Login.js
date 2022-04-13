@@ -13,6 +13,10 @@ export default function Login() {
   const [error, setError] = useState(false);
   useEffect(() => {
     let fetchData = async () => {
+      if (localStorage.getItem("token")) {
+        navigate("/profile");
+        return;
+      }
       let response = await fetch("/api/v1/profile", {
         method: "GET",
         headers: {

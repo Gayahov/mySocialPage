@@ -4,73 +4,47 @@ import useFetch from "../Hook/useFetch";
 import { POSTS_URL } from "../../constants/Urls";
 import AddPosts from "../AddPosts/AddPosts";
 import "./Posts.css";
+import fetchDatas from "../../constants/fetchDatas";
 import SearchPosts from "../SearchPosts/SearchPosts";
 
-export default function Posts() {
+export default function Posts({ favorite, endpoint, first, ...props }) {
   const [postArray, setPostArray] = useState("");
 
   useEffect(() => {
-    let fetchData = async () => {
-      let response = await fetch("/api/v1/post/mypost?limit=10&offset=0", {
-        method: "GET",
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      });
-      let data = await response.json();
-      console.log(data);
+    (async () => {
+
+      console.log(props);
+      if(first) {
+        setPostArray(first)
+      } else {
+      let data = await fetchDatas(endpoint);
       setPostArray(data);
-    };
-    fetchData();
+      }
+    })();
   }, []);
-  let formData = new FormData();
-  // formData.append("title","blog8"); // title
-  // formData.append("subtitle","blog8sub"); // subtitle
-  // formData.append("description","blog8desc") // description
-  // console.log(formData)
-
-  const onAddPost = async (e) => {
-    e.preventDefault();
-    // let response = await fetch("/api/v1/post", {
-    //   method: "POST",
-    //   // body: JSON.stringify({
-    //   //   title: title,
-    //   //   subTitle: subTitle,
-    //   //   description: description,
-    //   // }),
-    //   headers: {
-    //     "x-access-token":localStorage.getItem('token')
-    //   },
-    //   body:formData
-    // })
-    // let data = await response.json();
-    // console.log(data)
-    console.log(e.target.value);
-  };
-
   return (
+    <>
     <div className="main-posts">
-      <div className="all-posts">
-        <h1>All Posts</h1>
-        <SearchPosts></SearchPosts>
-      </div>
-
       <div className="posts">
         <div className="inputs">
-          <AddPosts onAddPost={onAddPost}></AddPosts>
+          {/* <AddPosts onAddPost={onAddPost}></AddPosts> */}
         </div>
-
+        {console.log(postArray)}
         {postArray ? (
           <div className="post-section">
             {postArray.map((item) => {
               return (
                 <Post
-                  subTitle={item.subTitle}
+                  subtitle={item.subtitle}
                   img={item.image_url}
                   firstName={item.firstName}
                   createdAt={item.createdAt}
                   title={item.title}
                   description={item.description}
+                  user_id={item.user_id}
+                  favorite={favorite}
+                  postId={item.postId}
+                  comments={item.json_agg}
                 />
               );
             })}
@@ -78,5 +52,67 @@ export default function Posts() {
         ) : null}
       </div>
     </div>
+    </>
   );
 }
+// import Post from "../Post/Post";
+// import React, { useEffect, useState } from "react";
+// import useFetch from "../Hook/useFetch";
+// import { POSTS_URL } from "../../constants/Urls";
+// import AddPosts from "../AddPosts/AddPosts";
+// import "./Posts.css";
+// import fetchDatas from "../../constants/fetchDatas"
+// import SearchPosts from "../SearchPosts/SearchPosts";
+
+// export default function Posts({favorite,endpoint, first,...props}) {
+//   const [postArray, setPostArray] = useState("");
+
+// useEffect(() => {
+//   (async() =>{
+//     console.log(props)
+//     if(first) {
+//       setPostArray(first);
+//     } else {
+//    let data = await fetchDatas(endpoint);
+//     setPostArray(data);
+//     }
+//   })()
+// },[])
+// return (
+//         <div>
+//           <div className="all-posts">
+//           <h1>{favorite}</h1>
+//           <SearchPosts></SearchPosts>
+//         </div>
+
+//       <div className="main-posts">
+
+//         <div className="posts">
+//           <div className="inputs">
+
+//           </div>
+
+//           {postArray ? (
+//             <div className="post-section">
+//               {postArray.map((item) => {
+//                 return (
+//                   <Post
+//                     subtitle={item.subtitle}
+//                     img={item.image_url}
+//                     firstName={item.firstName}
+//                     createdAt={item.createdAt}
+//                     title={item.title}
+//                     description={item.description}
+//                     user_id={item.user_id}
+//                     favorite={favorite}
+//                   />
+//                 );
+//               })}
+//             </div>
+//           ) : null}
+//         </div>
+//       </div>
+//       </div>
+//     );
+
+// }

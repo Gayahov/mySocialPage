@@ -1,4 +1,5 @@
 .posts{
+  width: 80vw;
   display: flex;
   justify-content: space-between; 
   -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);;
@@ -7,8 +8,20 @@
 }
 
 .all-posts {
-   display: flex;
-   justify-content: space-between;
+  width: 80vw;
+  margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px
+}
+.all-posts h1{
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 30px;
+  color: #3a3022;
+  font-weight: 700;
+  font-family: "Sacramento", cursive;
+  margin: 15px;
 }
 .main-posts {
     margin: 10px;
@@ -21,4 +34,8 @@
   font-weight: 700;
   font-family: "Sacramento", cursive;
   margin: 15px;
+}
+
+.post-section {
+ 
 }

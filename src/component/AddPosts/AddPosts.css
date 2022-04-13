@@ -1,5 +1,6 @@
 .add-posts  button{
-    padding: 5px;
+    
+    padding: 10px;
     margin: 10px;
     border: none;
     color: #64543d;
@@ -13,6 +14,7 @@ input{
     border: none;
 }
 .add-posts{
+  
     display: flex;
     flex-direction: column;
     padding: 15px;
@@ -41,4 +43,25 @@ input{
     -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
     box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
 
+}
+
+.adding {
+    margin: 5px;
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);;
+    -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
+    box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
+    justify-content: space-between;
+}
+.adding p{
+    color: #64543d;
+    font-family: 'Sacramento', cursive;
+    text-align: center;
+    padding: 20px;
+    margin: 15px;
+    font-size: 25px;
+    
 }

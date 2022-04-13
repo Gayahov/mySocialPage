@@ -5,7 +5,7 @@ import "./AddPosts.css";
 export default function AddPosts(onAddPost) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const [subTitle, setSubTitle] = useState("");
+  const [subtitle, setSubTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const handleOnSubmit = async (e) => {
@@ -16,14 +16,14 @@ export default function AddPosts(onAddPost) {
       formData.append("avatar", image);
     }
     formData.append("title", title); // title
-    formData.append("subtitle", subTitle); // subtitle
+    formData.append("subtitle", subtitle); // subtitle
     formData.append("description", description); // description
 
     let response = await fetch("/api/v1/post", {
       method: "POST",
       body: JSON.stringify({
         title: title,
-        subtitle: subTitle,
+        subtitle: subtitle,
         description: description,
       }),
       headers: {
@@ -53,7 +53,11 @@ export default function AddPosts(onAddPost) {
   };
 
   return (
-    <div className="add-posts">
+    <div className="adding" >
+      <p>Share your impressions with us!</p>
+    <div >
+      
+      <div className="add-posts">
       <input type="file" onChange={(e) => setImage(e.target.files[0])} />
       <input
         onChange={handleTitle}
@@ -64,7 +68,7 @@ export default function AddPosts(onAddPost) {
       <input
         onChange={handleSubTitle}
         placeholder="Subtitle"
-        value={subTitle}
+        value={subtitle}
         type="text"
       />
       <textarea
@@ -75,13 +79,11 @@ export default function AddPosts(onAddPost) {
         onChange={handleDescription}
         placeholder="what's new?"
       ></textarea>
-      <button
-        onClick={(e) => {
-          handleOnSubmit(e);
-        }}
-      >
-        Add Post
-      </button>
+      <div className="add-post-btn">
+      <button onClick={(e) => {handleOnSubmit(e);}}>Add Post </button>
+      </div>
+      </div>
+    </div>
     </div>
   );
 }
