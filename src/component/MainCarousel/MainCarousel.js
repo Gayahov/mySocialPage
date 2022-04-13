@@ -18,7 +18,6 @@ export default function MainCarousel () {
     }
     return (
       <div className="carousel">
-        <h2> Discover MyBlog</h2>
         <Slider {...settings}>
           <div>
           <img src={require("../../assets/2.png")}></img>

@@ -20,3 +20,7 @@
   -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);
   -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);
 }
+.search {
+  display: flex;
+  justify-content: flex-end;
+}

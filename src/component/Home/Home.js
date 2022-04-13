@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="main">
       {/* <Header/> */}
-      <MainCarousel />
+      {/* <MainCarousel /> */}
       <AddPosts />
       <SearchPosts/>
       <div>
