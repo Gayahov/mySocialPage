@@ -1,24 +1,40 @@
-.add-posts  button{
-    
-    padding: 10px;
-    margin: 10px;
+.add-posts button {
+    padding: 5px;
+    margin: 5px;
     border: none;
+    border-radius: 10px;
+    height: 30px;
+    width: 70px;
     color: #64543d;
     font-family: 'Sacramento', cursive;
-    -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);;
-    -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
-    box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
-}
-input{
+    background-color: rgba(98, 158, 104, 0.151);
+    cursor: pointer;
+  
+  }
+  .add-posts button:hover{
+    background-color:rgba(8, 123, 104, 0.683) ;
+    transition: .3s;
+  }
+  
+  .add-posts input {
+    padding: 10px ;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid;
+    
+  }
+  
+input,textarea{
     outline: none;
     border: none;
-}
+ }
 .add-posts{
   
     display: flex;
     flex-direction: column;
     padding: 15px;
 }
+/* 
 .add-posts input {
     border: none;
     padding: 12px 20px;
@@ -28,32 +44,26 @@ input{
     -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);;
     -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
     box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
-}
+}*/
 .add-posts input:focus{
     border: none;
 }
 .add-posts textarea {
-    padding: 12px 20px;
-    margin: 8px 5px;
-    border: none;
-    border-radius: 4px;
+    padding: 10px ;
     resize: none;
-    box-sizing: border-box;
-    -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);;
-    -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
-    box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid;
 
 }
-
+ 
 .adding {
     margin: 5px;
     text-align: center;
     padding: 15px;
     display: flex;
     box-sizing: border-box;
-    -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);;
-    -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);;
-    box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
+    
     justify-content: space-between;
 }
 .adding p{
@@ -64,4 +74,4 @@ input{
     margin: 15px;
     font-size: 25px;
     
-}
+} 

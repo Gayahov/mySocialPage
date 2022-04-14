@@ -8,6 +8,7 @@ import Profile from "./component/Profile/Profile";
 import Register from "./component/Register/Register";
 import Header from "./layout/Header/Header";
 import FavoritePost from "./component/FavoritePosts/FavoritePost";
+import './App.css';
 
 function App() {
   return (

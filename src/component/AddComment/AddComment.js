@@ -3,13 +3,13 @@ import { useState, useRef } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import "./AddComment.css";
 
-export default function AddComment({ postId, comments }) {
+export default function AddComment({ postId, comments, stateChanger, state }) {
   const dropdownRef = useRef(null);
   const [openComment, setOpenComment] = useState(dropdownRef, false);
   const [text, setText] = useState("");
   const onClick = () => setOpenComment(!openComment);
 
-  const addComment = async () => {
+  const addComment = async (e) => {
     console.log("text", text);
     console.log(postId);
     let response = await fetch(
@@ -23,33 +23,34 @@ export default function AddComment({ postId, comments }) {
         body: JSON.stringify({ text: text }),
       }
     );
+    if (text === "") {
+      e.preventdefault();
+    }
     let data = await response.json();
     console.log(data);
     if (!data.error) {
-      let url = window.location.pathname;
-      window.location.href = url;
+      // let url = window.location.pathname;
+      // window.location.href = url;
+      stateChanger(!state);
     } else {
       alert(data.error);
     }
   };
   return (
     <div className="comment">
-      <p> Join us for the Discussion!</p>
-      <p onClick={onClick}>
-        Add Comment
-      </p>
+      {/* <p> Join us for the Discussion!</p>
+      <p onClick={onClick}>Add Comment</p>
       <div
         ref={dropdownRef}
         className={`add-comment ${openComment ? "add-comment" : "active"}`}
-      >
-        <input
-          placeholder="Comment"
-          name="name"
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button onClick={addComment}>Add Comment</button>
-      </div>
-      
+      > */}
+      <input
+        placeholder="Comment"
+        name="name"
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button onClick={addComment}>Send</button>
     </div>
+    // </div>
   );
 }

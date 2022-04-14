@@ -1,42 +1,6 @@
-// import React, { useState, useRef } from "react";
-// import { Link } from "react-router-dom";
 
 
-// import "./Header.css";
-
-// export default function Header() {
-  
-//   const [showLogReg, setShowLogReg] = useState(false)
- 
-//   return (
-//     <>
-//       <div className="navBar">
-//       {/* <div className="log-reg-div" >
-//           <ul className="login-reg">
-          
-          
-//           </ul>
-//         </div> */}
-//           <div className="navBar-child">
-//         <div className="logo">Welocome to My Blog</div>
-        
-//         </div>
-
-//         <div >
-//           <ul className="menu">
-//             <li > <Link to="/home">Home</Link></li>
-//             <li >My Favorite Posts</li>
-//             <li><Link to= "/profile">My Profile</Link></li>
-//             <li id="test" ><Link to='/login'>SignIn/SignUp</Link></li>
-//           {/* <li><Link to='/register'> Register</Link></li> */}
-//           </ul>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -44,14 +8,32 @@ import "./Header.css";
 
 export default function Header() {
   
-  // const [showLogReg, setShowLogReg] = useState(false)
+  const [color, setColor] = useState(false);
+  const navEl = useRef();
+  //change nav color when scrolling
+  const changeColor = () => {
+    navEl.current.focus();
+    if (window.scrollY >= 90) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeColor);
+    return () => {
+      window.removeEventListener("scroll", changeColor);
+    };
+  }, []);
+
  
   return (
     <>
-      <div className="navBar">
+      <div  ref={navEl} className={color ? "header header-bg" : "header"}>
      
           <div className="navBar-child">
-        <div className="logo">Let's Traveling</div>
+        <div className="logo"><Link to="/home">Let's Travel</Link></div>
         
         </div>
 
@@ -60,11 +42,9 @@ export default function Header() {
             <li > <Link to="/home">Home</Link></li>
             <li ><Link to = '/fav'>My Favorite Posts</Link></li>
             <li><Link to= "/profile">My Profile</Link></li>
-          
-          {/* <li><Link to='/register'> Register</Link></li> */}
           </ul>
         </div>
-        <div> <ul><li id="test" ><Link to='/login'>SignIn/SignUp</Link></li></ul> </div>
+        <div id="loginId" className="log_reg"> <ul><li id="test" ><Link to='/login'>Sign In</Link></li></ul> </div>
       </div>
     </>
   );

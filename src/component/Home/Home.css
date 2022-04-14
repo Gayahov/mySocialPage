@@ -1,5 +1,27 @@
 .main{
-  width: 90%;
-  margin: 0 auto;
-    
+  width: 100%;
+   
+}
+.show-add-btn {
+  padding: 5px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  color: #64543d;
+  font-family: 'Sacramento', cursive;
+  background-color: rgba(98, 158, 104, 0.151);
+  cursor: pointer;
+}
+.add-post {
+  padding: 15px;
+  justify-content: space-between;
+  display: flex;
+}
+.add-post p {
+  padding: 15px;
+  margin-right:10px ;
+  color: #64543d;
+  font-family: 'Sacramento', cursive;
+  font-size: 24px;
 }

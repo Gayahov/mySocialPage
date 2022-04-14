@@ -16,25 +16,31 @@
 
 .form input {
   border: none;
-    font-size: 20px;
-    color: grey;
-    border-bottom: 1px solid;
-    padding: 10px;
-    margin: 8px 5px;
-    
-    box-sizing: border-box;
+  font-size: 20px;
+  color: grey;
+  border-bottom: 1px solid;
+  padding: 10px;
+  margin: 8px 5px;
+
+  box-sizing: border-box;
 }
 
 .form button {
   padding: 15px;
   margin: 10px;
-  color: beige;
+  color: rgb(30, 30, 18);
+  border-radius: 10px;
   border: none;
-  background-color: rgb(129, 106, 72);
+  font-size: 18px;
+  background-color: rgba(98, 158, 104, 0.151);
   font-family: "Sacramento", cursive;
-  -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);
+  /* -webkit-box-shadow: 0 5px 2px -2px rgb(129, 106, 72);
   -moz-box-shadow: 0 5px 2px rgb(129, 106, 72);
-  box-shadow: 0 5px 2px -1px rgb(129, 106, 72);
+  box-shadow: 0 5px 2px -1px rgb(129, 106, 72); */
+}
+.form button:hover {
+  background-color: rgba(98, 158, 104, 0.295);
+  transition: 0.3s;
 }
 form label {
   color: rgb(53, 45, 28);

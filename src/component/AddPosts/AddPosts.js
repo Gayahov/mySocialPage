@@ -41,49 +41,51 @@ export default function AddPosts(onAddPost) {
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
-    // setSubmitted(false);
   };
   const handleSubTitle = (e) => {
     setSubTitle(e.target.value);
-    // setSubmitted(false);
   };
   const handleDescription = (e) => {
     setDescription(e.target.value);
-    // setSubmitted(false);
   };
 
   return (
-    <div className="adding" >
-      <p>Share your impressions with us!</p>
-    <div >
-      
-      <div className="add-posts">
-      <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-      <input
-        onChange={handleTitle}
-        placeholder="Title"
-        value={title}
-        type="text"
-      />
-      <input
-        onChange={handleSubTitle}
-        placeholder="Subtitle"
-        value={subtitle}
-        type="text"
-      />
-      <textarea
-        name="your minds"
-        rows="5"
-        cols="50"
-        value={description}
-        onChange={handleDescription}
-        placeholder="what's new?"
-      ></textarea>
-      <div className="add-post-btn">
-      <button onClick={(e) => {handleOnSubmit(e);}}>Add Post </button>
+    <div className="adding">
+      <div>
+        <div className="add-posts">
+          <input
+            onChange={handleTitle}
+            placeholder="Title"
+            value={title}
+            type="text"
+          />
+          <input
+            onChange={handleSubTitle}
+            placeholder="Subtitle"
+            value={subtitle}
+            type="text"
+          />
+          <textarea
+            name="your minds"
+            rows="5"
+            cols="50"
+            value={description}
+            onChange={handleDescription}
+            placeholder="what's new?"
+          ></textarea>
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+
+        <div className="add-post-btn">
+            <button
+              onClick={(e) => {
+                handleOnSubmit(e);
+              }}
+            >
+              Add Post{" "}
+            </button>
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
     </div>
   );
 }

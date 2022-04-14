@@ -1,7 +1,15 @@
-.navBar{
+.header{
+  z-index: 1;
+width: 100%;
+position: sticky;
 display: flex;
-background-color: white;
+top: 0;
+background-color:  rgba(56, 89, 97, 0.053);
+border-radius: 10px;
 justify-content: space-between;
+}
+.header-bg {
+  background-color: rgba(255, 255, 255, 0.732);
 }
 
 .navBar-child {
@@ -15,7 +23,7 @@ justify-content: space-between;
 .logo {
   text-align: center;
   font-size: 20px;
-  color: #3a3022;
+  color: #17130e;
   font-weight: 700;
   font-family: "Sacramento", cursive;
   margin: 15px;
@@ -23,7 +31,7 @@ justify-content: space-between;
 
 .menu {
   font-family: "Sacramento", cursive;
-  color: #3a3022;
+  color: #19150f;
   list-style: none;
   display: flex;
   justify-content: center;
@@ -31,6 +39,8 @@ justify-content: space-between;
 }
 
 .menu li {
+  font-size: 20px;
+  padding: 10px;
   margin: 10px;
 }
 .menu li:hover {
@@ -52,10 +62,25 @@ justify-content: space-between;
 a {
   list-style: none;
   text-decoration: none;
-  color: rgb(129, 106, 72);
+  color: rgb(57, 50, 36);
   transition: .5s;
 }
 
 a:hover{
-  text-decoration:underline
+  color: rgb(183, 49, 49);
+}
+.log_reg ul  {
+  margin: 20px 10px;
+  border-radius: 5px;
+  background-color: rgba(98, 158, 104, 0.151);
+  font-size: 20px;
+  padding: 5px;
+  list-style: none;
+  text-decoration: none;
+}
+.log_reg ul:hover{
+  background-color: rgba(98, 158, 104, 0.342);
+}
+.log_reg ul li {
+  color: white;
 }

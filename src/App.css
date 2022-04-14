@@ -2,10 +2,15 @@
   margin: 0;
   padding: 0;
 }
+.App{
+  margin: 0 auto;
+  width: 80%;
+  
+}
 Body {
+  background-color: rgb(255, 255, 255);
   box-sizing: border-box;
   overflow-x: hidden;
-  margin: 10px;
   
   /* overflow:hidden */
 }

@@ -155,7 +155,7 @@ const Register = () => {
             className="input"
             value={firstName}
             type="text"
-          />
+          /><p id="firstName" style={{display:firstName.length && !firstName?"flex":"none"}}>field required</p>
 
           <label className="label">LastName</label>
           <input
@@ -163,7 +163,7 @@ const Register = () => {
             className="input"
             value={lastName}
             type="text"
-          />
+          /><p id="lastName" style={{display:lastName.length &&!lastName?"flex":"none"}}>field required</p>
 
           <label className="label">Nick Name</label>
           <input
@@ -179,7 +179,18 @@ const Register = () => {
             className="input"
             value={email}
             type="email"
-          />
+          /> <p
+          id="email"
+          style={{
+            display:
+              email.length &&
+              (email.indexOf("@") === -1 || email.indexOf(".") === -1)
+                ? "flex"
+                : "none",
+          }}
+        >
+          Email required
+        </p>
 
           <label className="label">Password</label>
           <input
@@ -187,14 +198,14 @@ const Register = () => {
             className="input"
             value={password}
             type="password"
-          />
+          /><p id="password" style={{display:password.length && password < 8?"flex":"none"}}>password must be 8 character</p>
           <label className="label">Confirm Password</label>
           <input
             onChange={handleConfirmPassword}
             className="input"
             value={confirmPassword}
             type="password"
-          />
+          /><p id="confirmPassword" style={{display:confirmPassword !== password?"flex":"none"}}>password confirmation does not match with password</p>
 
           <button onClick={handleSubmit} className="btn" type="submit">
             Sign Up

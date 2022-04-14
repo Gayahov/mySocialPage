@@ -56,32 +56,42 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      navigate("/profile");
+
       console.log(data);
-      setSubmitted(true);
+      //setSubmitted(true);
       if (data.error) {
-        setError(data.error);
+        if (Array.isArray(data.error)) {
+          console.log(1111);
+          data.error.forEach((item) => {
+            console.log(item.param, item.msg);
+            document.getElementById(item.param).style.display = "flex";
+            document.getElementById(item.param).innerHTML = item.msg + " type";
+          });
+        } else {
+          setError(data.error);
+        }
       } else {
         localStorage.setItem("token", data.access_token);
-
         setError(false);
+        document.getElementById("loginId").style.display = "none"
+        navigate("/profile");
       }
     }
   };
 
   // Showing success message
-  const successMessage = () => {
-    return (
-      <div
-        className="success"
-        style={{
-          display: error ? "" : "none",
-        }}
-      >
-        <h1>{error}</h1>
-      </div>
-    );
-  };
+  // const successMessage = () => {
+  //   return (
+  //     <div
+  //       className="success"
+  //       style={{
+  //         display: error ? "" : "none",
+  //       }}
+  //     >
+  //       <h1>{error}</h1>
+  //     </div>
+  //   );
+  // };
 
   // Showing error message if error is true
   const errorMessage = () => {
@@ -89,7 +99,7 @@ export default function Login() {
       <div
         className="error"
         style={{
-          display: error ? "" : "none",
+          display: error ? "flex" : "none",
         }}
       >
         <h1>{error}</h1>
@@ -105,12 +115,9 @@ export default function Login() {
           <h1>Sign In</h1>
         </div>
         {/* Calling to the methods */}
-        <div className="messages">
-          {errorMessage()}
-          {successMessage()}
-        </div>
+        <div className="messages">{errorMessage()}</div>
 
-        <form className="reg-log-form">
+        <div className="reg-log-form">
           <label className="label">Email</label>
           <input
             onChange={handleEmail}
@@ -118,6 +125,18 @@ export default function Login() {
             value={email}
             type="email"
           />
+          <p
+            id="email"
+            style={{
+              display:
+                email.length &&
+                (email.indexOf("@") === -1 || email.indexOf(".") === -1)
+                  ? "flex"
+                  : "none",
+            }}
+          >
+            Email required
+          </p>
 
           <label className="label">Password</label>
           <input
@@ -126,11 +145,19 @@ export default function Login() {
             value={password}
             type="password"
           />
+          <p
+            id="password"
+            style={{
+              display: password.length && password.length < 8 ? "flex" : "none",
+            }}
+          >
+            Password must be 8 character length
+          </p>
 
-          <button onClick={handleSubmit} className="btn" type="submit">
+          <button onClick={handleSubmit} className="btn">
             Sign In
           </button>
-        </form>
+        </div>
         <p>
           New to this site? <Link to="/register">Sign Up</Link>
         </p>

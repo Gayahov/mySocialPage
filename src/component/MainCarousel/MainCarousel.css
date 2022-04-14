@@ -1,8 +1,11 @@
-.carousel {
-
+.home_bg {
+    background-image:url("../../assets/bgg.jpg");
     text-align: center;
-    width: 90%;
+    height: 60vh;
+    background-repeat: no-repeat;
     margin: 0 auto;
+    background-position: center; 
+    background-size: cover;
     
     
 }
